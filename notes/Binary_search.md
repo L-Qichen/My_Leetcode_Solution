@@ -15,7 +15,8 @@ java:
 public int binarySearch(int[] nums, int target) {
         int l = 0, r = nums.length - 1;
         while(l <= r){
-            int mid = (l + r) / 2;
+            // int mid = (l + r) / 2;
+            int mid = l + (r - l) / 2;
             if(nums[mid] == target) {
                 return mid;
             } else if (nums[mid] > target) {
@@ -37,3 +38,10 @@ public int binarySearch(int[] nums, int target) {
 3. 万用型（该模版同样可以用于替代前两个题型）
     * 循环条件：l < r - 1;
     * 缩减搜索空间：l = mid, r = mid;
+
+**关于 mid 的值**
+有两种方式计算 mid：
+1. (l + r) / 2;
+2. l + (r - l) / 2;
+两种方式的结果是一样的，但是 由于（l + r）可能出现加法溢出的情况，即加法的结果大于整型能够表示的范围，所以推荐在做题过程中使用第二种方法计算。因为 l 和 r 都是正数，因此（r - l）不会出现加法溢出问题。
+
