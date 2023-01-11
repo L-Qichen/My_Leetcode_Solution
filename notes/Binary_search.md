@@ -46,3 +46,41 @@ public int binarySearch(int[] nums, int target) {
 
 两种方式的结果是一样的，但是 由于（l + r）可能出现加法溢出的情况，即加法的结果大于整型能够表示的范围，所以推荐在做题过程中使用第二种方法计算。因为 l 和 r 都是正数，因此（r - l）不会出现加法溢出问题。
 
+###LeetCode 原题
+* 33. Search in Rotated Sorted Array
+```Java
+public int search(int[] nums, int target) {
+        // 检查数组是否为空
+        if (nums == null || nums.length == 0) return -1;
+        int l = 0, r = nums.length - 1;
+        // 使用万用型模版
+        while (l < r - 1) {
+            int mid = l + (r - l) / 2;
+            // 检查左边数组是否为有序数组
+            if(nums[mid] >= nums[0]) {
+                // 如果左半部分为有序数组，再检查target是否被包含在左侧数组内
+                if(target >= nums[0] && target <= nums[mid]) {
+                    // 如果左半数组有序且包含target，则截取左半数组并再搜索
+                    r = mid;
+                    // 如果左半数组有序但不包含target，则截取右半数组并再搜索
+                } else {
+                    l = mid;
+                }
+            } else { // 如果左半部分不是有序数组，则右半部分肯定为有序数组
+                //逻辑同上一个条件判断，检查target是否包含在右侧有序数组内
+                if (target >= nums[mid] && target <= nums[nums.length - 1]) {
+                    l = mid;
+                } else {
+                    r = mid;
+                }
+            }
+        }
+        // 万用型模版最后跳出while循环时会留下两个元素
+        //所以最后一步检查这两个元素是否有一个是target
+        if(nums[l] == target) {return l;}
+        if(nums[r] == target) {return r;}
+        return -1;
+    }
+```
+这道题的思路基本可以总结为先缩减搜索范围直到找到一个有序的部分，然后再从该有序的部分中找target。
+
