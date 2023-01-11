@@ -16,6 +16,19 @@
 两个指针指向链表中不同的节点并协同完成任务。
 单链表中使用双指针的**注意事项**：
   * 两个指针必须同向而行（从 head 开始向后遍历），因为单链表只能从头开始访问，无法直接获取 tail node 的数据。
-  * 两个指针一快一慢。
-  
-  ***例***：用双指针找链表的中间节点--> 快的指针每次前进两个节点，慢的每次前进一个节点，这样当快的指针遍历完链表的时候慢指针刚好停留在链表中间节点。有效避免暴力的直接遍历两次链表以获取中间节点。
+  * 两个指针一快一慢，间隔一定距离。
+
+### LeetCode 原题
+* [876. Middle of the Linked List](https://leetcode.com/problems/middle-of-the-linked-list/)
+```Java
+public ListNode middleNode(ListNode head) {
+  ListNode p1 = head, p2 = head;
+  // 循环条件：快指针走到尾节点时结束循环
+  while(p2 != null && p2.next != null) {
+      p1 = p1.next;
+      p2 = p2.next.next;
+  }
+  return p1;
+}
+```
+该题用双指针找链表的中间节点--> 快的指针每次前进两个节点，慢的每次前进一个节点，这样当快的指针遍历完链表的时候慢指针刚好停留在链表中间节点。有效避免暴力的直接遍历两次链表以获取中间节点。
