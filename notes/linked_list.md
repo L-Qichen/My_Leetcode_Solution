@@ -18,6 +18,14 @@
   * 两个指针必须同向而行（从 head 开始向后遍历），因为单链表只能从头开始访问，无法直接获取 tail node 的数据。
   * 两个指针一快一慢，间隔一定距离。
 
+**模版：**
+  * 起手初始化两个 pointer 指向 head，p1 和 p2;
+  * while 循环遍历链表，循环条件：快指针（p2）在bound 内;
+  * 慢指针（p1）移到 next；快指针（p2）移到next.next;
+  * 返回慢指针指向的节点（p1）;
+
+
+
 ### LeetCode 原题
 * [876. Middle of the Linked List](https://leetcode.com/problems/middle-of-the-linked-list/)
 ```Java
