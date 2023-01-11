@@ -32,6 +32,8 @@
 public ListNode middleNode(ListNode head) {
   ListNode p1 = head, p2 = head;
   // 循环条件：快指针走到尾节点时结束循环
+  // p2.next != null 用于保证 
+  // p2 = p2.next.next 不报错
   while(p2 != null && p2.next != null) {
       p1 = p1.next;
       p2 = p2.next.next;
