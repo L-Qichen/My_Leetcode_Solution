@@ -27,8 +27,10 @@
 ### Recursion
 通常递归在链表中的应用使用 Bottom up recursion，使用 stack first in last out 的特性解决关于单链表不能直接从后往前的问题。一般分为三步：
 1. 获取子问题的结果
-2. 在单一递归层操作
+2. 定义在单一递归层操作
 3. 返回结果（在递归中，1和3的结果的值的含义必须是一样的）
+
+***递归的主要特点就是层层深入，直到 base case 后再层层返回。所以总是先拿到子问题返回的结果再处理操作。***
 
 
 ### LeetCode 原题
@@ -47,3 +49,19 @@ public ListNode middleNode(ListNode head) {
 }
 ```
 该题用双指针找链表的中间节点--> 快的指针每次前进两个节点，慢的每次前进一个节点，这样当快的指针遍历完链表的时候慢指针刚好停留在链表中间节点。有效避免暴力的直接遍历两次链表以获取中间节点。
+
+* [206. Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/description/)
+```Java
+public ListNode reverseList(ListNode head) {
+  // base case, make the tail node be head
+  if(head == null || head.next == null) {
+      return head;
+  }
+  // get the result of subproblem, reversedHead = tail node
+  ListNode reversedHead = reverseList(head.next);
+  // 当前node的next node的next指针指向当前节点，实现链表反转
+  head.next.next = head;
+  head.next = null;
+  return reversedHead;
+}
+```
