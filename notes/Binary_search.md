@@ -1,9 +1,9 @@
-#二分查找：
+# 二分查找：
 常用于已经排好序的数组，通过数组的最左值的 index（l=0）和最右值的 index（r=arr.length) 来获取数组的中间值。如果中间值不是目标值，则比较中间值和目标值的大小，并根据大小改变 l 或 r（缩减搜索区域）。因为每次都能将搜索区域减半，所以时间复杂度为O(logN)。
 
 使用 binary search 时要注意两个基本原则：1. 每次缩减搜索区域；2. 每次缩减不能排除潜在答案。
 
-###binary search 模版
+### binary search 模版
 常规应用：
 ```
 Input: nums = [-1,0,3,5,9,12], target = 9
@@ -46,7 +46,7 @@ public int binarySearch(int[] nums, int target) {
 
 两种方式的结果是一样的，但是 由于（l + r）可能出现加法溢出的情况，即加法的结果大于整型能够表示的范围，所以推荐在做题过程中使用第二种方法计算。因为 l 和 r 都是正数，因此（r - l）不会出现加法溢出问题。
 
-###LeetCode 原题
+### LeetCode 原题
 * 33. Search in Rotated Sorted Array
 ```Java
 public int search(int[] nums, int target) {
