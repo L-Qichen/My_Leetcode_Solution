@@ -11,7 +11,7 @@ Tree 和 Linked List的概念类似，都是将数据不一定连续的储存在
 因为 BFS 按照从上到下，从左到右的顺序进行搜索，所以我们需要 ***使用 Queue 来记录需要被展开的节点。***
 **Step of BFS in Tree：**
 * 起手初始化一个队列（queue）储存所有的入口节点（根据队列的特性，先进入队列的也先离开队列，然后记录离开的节点的子节点到队尾）；
-* while循环遍历队列（queue），魂环条件为队列不为空；
+* while循环遍历队列（queue），循环条件为队列不为空；
   * for each node in the queue **(currently)**
   * poll out the element (add to result)
   * expand it, offer children to the queue in order
