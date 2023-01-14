@@ -84,3 +84,35 @@ public int search(int[] nums, int target) {
 ```
 这道题的思路基本可以总结为先缩减搜索范围直到找到一个有序的部分，然后再从该有序的部分中找target。
 
+* [81. Search in Rotated Sorted Array II](https://leetcode.com/problems/search-in-rotated-sorted-array-ii/description/)
+```Java
+public boolean search(int[] nums, int target) {
+        int l = 0, r = nums.length - 1;
+        // 使用万用型模版
+        while(l < r - 1){
+            // 获取中间值
+            int mid = l + (r - l) / 2;
+            if(nums[mid] == target || nums[r] == target || nums[l] == target){
+                return true;
+            }
+            // 判断左边是否为有序数组
+            if(nums[mid] > nums[l]) {
+                if(target < nums[mid] && target > nums[l]) {
+                    r = mid;
+                } else {
+                    l = mid;
+                }
+            } else if(nums[mid] < nums[r]){ // 判断右边是否为有序数组
+                if(target < nums[r] && target > nums[mid]) {
+                    l = mid;
+                } else {
+                    r = mid;
+                }
+            } else { // nums[mid] == nums[l] == nums[r], 相同的元素跳过
+                r--;
+            }
+        }
+        return target == nums[l] || target == nums[r];
+    }
+```
+本题的解题思路基本和上一题一样，需要注意的是这道题数组中的元素可能是重复的，所有重复的元素需要做跳过处理。二分后重复的元素会集中在数组的开头或者结尾，所以 l 或 r 自增或者自减就能解决。
