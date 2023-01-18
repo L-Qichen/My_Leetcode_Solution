@@ -31,9 +31,15 @@ public void merge(int[] nums1, int m, int[] nums2, int n) {
   for(int j = 0; j < m+n; j++){
       nums1[j] = sorted[j];
   }
-  }
+}
 ```
-通过双指针实现合并，这里需要使用一个额外的数组来储存，所以空间复杂度为O(n)。
+通过双指针实现合并，这里需要使用一个额外的数组来储存，所以空间复杂度为O(n)，因为这个方法最后需要拷贝数组到 nums1，所以时间复杂度也为O(n)。
+
+接下来实现 leetcode 上的 merge sort 题目：
+* [912. Sort an Array](https://leetcode.com/problems/sort-an-array/)
+因为题目要求时间复杂度必须为O(nlog(n))，所以这道题使用 merge sort。
+```Java
+```
 
 
 ### References
